@@ -1,6 +1,6 @@
 # Overview
 
-Repo for OS course. FAMCS 2nd course, sem 4
+Repo for OS course. FAMCS 2nd year, sem 4
 
 # Building
 
