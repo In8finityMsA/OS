@@ -13,6 +13,8 @@ int HandleRead(ServerThreadParam param, Request request) {
     int index = request.index;
     if (index <= 0 || index > *param.num_records) {
         std::cerr << "Incorrect index: " << index << std::endl;
+        CHECK_ERROR(!WriteFile(param.hPipe, &employee, sizeof(employee), nullptr, nullptr), "Failed sending data.");
+        return -1;
     }
 
     WaitForSingleObject(param.mutex_lock[index], INFINITE);
@@ -65,6 +67,8 @@ int HandleWrite(ServerThreadParam param, Request request) {
     int index = request.index;
     if (index <= 0 || index > *param.num_records) {
         std::cerr << "Incorrect index: " << index << std::endl;
+        CHECK_ERROR(!WriteFile(param.hPipe, &employee, sizeof(employee), nullptr, nullptr), "Failed sending data.");
+        return -1;
     }
 
     WaitForSingleObject(param.mutex_lock[index], INFINITE);

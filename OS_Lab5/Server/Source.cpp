@@ -111,7 +111,8 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[]) {
     }
     WaitForMultipleObjects(client_num, processes, TRUE, INFINITE); // Wait for all clients to stop
 
-    std::cout << "All clients have ended execution. Server exits.";
+    std::cout << "All clients have ended execution.\n";
+    CHECK_ERROR(ReadBinaryFile(output_filename) != 0, L"Error reading from file.");
     for (size_t i = 0; i < client_num; i++) {
         CloseHandle(thread_params[i].hPipe);
     }
